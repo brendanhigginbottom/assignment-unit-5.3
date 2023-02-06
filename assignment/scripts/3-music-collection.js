@@ -65,7 +65,7 @@ console.log(findByArtist('Bad Bunny')); // Should return no matches/an empty arr
 /**
  * 
  * @param {object} object Object to search collection array for full matches. keys that can be (not must) passed in object are artist, album, year.
- * @returns {array} Array of matching album info, empty array if no matches, full collection array if no object key-value pairs provided 
+ * @returns {array} Array of matching album info, empty array if no matches, full collection array if no object key-value pairs provided or no object pass as an argument at all.
  */
 
 function search(object) {

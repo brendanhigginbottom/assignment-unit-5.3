@@ -28,3 +28,18 @@ console.log(addToCollection('The Bad Plus Joshua Redman', 'The Bad Plus and Josh
 console.log(addToCollection('El Mal Querer', 'Rosalia', 2018));
 
 console.log(collection);
+
+/**
+ * 
+ * @param {array} collectionArray Array to log contents of
+ */
+
+function showCollection (collectionArray) {
+    console.log(collectionArray.length);
+    for (let albumInfo of collectionArray) {
+        console.log(`${albumInfo.albumTitle} by ${albumInfo.albumArtist} published in ${albumInfo.albumYearPublished}`)
+    };
+}
+
+showCollection(collection);
+

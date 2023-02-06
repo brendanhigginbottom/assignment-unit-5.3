@@ -73,6 +73,7 @@ function search(object) {
     // Determines number of search criteria. If searchItems === 0, no key-value pairs provided in object.
     let searchItems = Object.keys(object).length;
     console.log(searchItems);
+    // There is surely a better way to do this, but this checks the length of the object passed, knowing that all are provided if it's === 3, and iterates from there.
     if (searchItems === 3) {
         for (let match of collection) {
             if (object.artist === match.albumArtist && object.album === match.albumTitle && object.year === match.albumYearPublished) {
@@ -91,6 +92,8 @@ function search(object) {
                     matchingArray.push(match);
                 }
               }
+        } else {
+            return collection;
         }
     return matchingArray
 }
@@ -103,3 +106,4 @@ console.log(search({artist: 'John Coltrane', album: 'Ballads', year: 1963}));
 console.log(search({artist: 'John Coltrane', year: 1963}));
 console.log(search({album: 'Ballads', year: 1963}));
 console.log(search({artist: 'John Coltrane'}));
+console.log(search({}));

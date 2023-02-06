@@ -59,5 +59,47 @@ function findByArtist(artist) {
     return matchingArray;
 }
 
-console.log(findByArtist('John Coltrane'));
-console.log(findByArtist('Bad Bunny'));
+console.log(findByArtist('John Coltrane')); //Should retrun two matches
+console.log(findByArtist('Bad Bunny')); // Should return no matches/an empty array
+
+/**
+ * 
+ * @param {object} object Object to search collection array for full matches. keys that can be (not must) passed in object are artist, album, year.
+ * @returns {array} Array of matching album info, empty array if no matches, full collection array if no object key-value pairs provided 
+ */
+
+function search(object) {
+    let matchingArray = [];
+    // Determines number of search criteria. If searchItems === 0, no key-value pairs provided in object.
+    let searchItems = Object.keys(object).length;
+    console.log(searchItems);
+    if (searchItems === 3) {
+        for (let match of collection) {
+            if (object.artist === match.albumArtist && object.album === match.albumTitle && object.year === match.albumYearPublished) {
+                matchingArray.push(match);
+            }
+          }
+        } else if (searchItems === 2) {
+            for (let match of collection) {
+                if ((object.artist === match.albumArtist && object.album === match.albumTitle) || (object.artist === match.albumArtist && object.year === match.albumYearPublished) || (object.album === match.albumTitle && object.year === match.albumYearPublished)) {
+                    matchingArray.push(match);
+                }
+              }
+        } else if (searchItems === 1) {
+            for (let match of collection) {
+                if (object.artist === match.albumArtist || object.album === match.albumTitle || object.year === match.albumYearPublished) {
+                    matchingArray.push(match);
+                }
+              }
+        }
+    return matchingArray
+}
+
+console.log(search({artist: 'John Coltrane'})); // Should return array with length 2
+console.log(search({artist: 'Bad Bunny'})); // Should return empty array
+
+console.log(Object.keys(collection));
+console.log(search({artist: 'John Coltrane', album: 'Ballads', year: 1963}));
+console.log(search({artist: 'John Coltrane', year: 1963}));
+console.log(search({album: 'Ballads', year: 1963}));
+console.log(search({artist: 'John Coltrane'}));

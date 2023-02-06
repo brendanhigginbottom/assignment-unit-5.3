@@ -43,3 +43,21 @@ function showCollection (collectionArray) {
 
 showCollection(collection);
 
+/**
+ * 
+ * @param {string} artist Artist to search collection array for
+ * @returns {array} Array of matches by artist name, empty array if no matches found
+ */
+
+function findByArtist(artist) {
+    let matchingArray = [];
+    for (let match of collection) {
+        if (match.albumArtist === artist) {
+            matchingArray.push(match)
+        } 
+    }
+    return matchingArray;
+}
+
+console.log(findByArtist('John Coltrane'));
+console.log(findByArtist('Bad Bunny'));

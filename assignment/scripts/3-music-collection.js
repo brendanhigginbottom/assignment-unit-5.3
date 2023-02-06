@@ -69,6 +69,11 @@ console.log(findByArtist('Bad Bunny')); // Should return no matches/an empty arr
  */
 
 function search(object) {
+    // first need to test if object is undefined, otherwise I get an error when declaring searchItems equal to no object. Works with an empty object though. Returning before all the other code avoids the error.
+    if (object === undefined) {
+        return collection;
+    }
+    // making empty array to fill in there are any matches.
     let matchingArray = [];
     // Determines number of search criteria. If searchItems === 0, no key-value pairs provided in object.
     let searchItems = Object.keys(object).length;
@@ -107,3 +112,5 @@ console.log(search({artist: 'John Coltrane', year: 1963}));
 console.log(search({album: 'Ballads', year: 1963}));
 console.log(search({artist: 'John Coltrane'}));
 console.log(search({}));
+console.log(search({artist: 'Bad Bunny'}));
+console.log(search());

@@ -68,7 +68,7 @@ function findByArtist(artist) {
     return matchingArray;
 }
 
-console.log(findByArtist('John Coltrane')); //Should retrun two matches
+console.log(findByArtist('John Coltrane')); //Should return two matches
 console.log(findByArtist('Bad Bunny')); // Should return no matches/an empty array
 
 /**
@@ -87,7 +87,7 @@ function search(object) {
     // Determines number of search criteria. If searchItems === 0, no key-value pairs provided in object. Logging it for my own tests.
     let searchItems = Object.keys(object).length;
     console.log(searchItems);
-    // There is surely a better way to do this, but this checks the length of the object passed, knowing that all are provided if it's === 4, and iterates from there. Permutations add up quick, though.
+    // There is surely a better way to do this (a function to generate the permutations based on length of argument object passed?), but this checks the length of the object passed, knowing that all are provided if it's === 4, and iterates from there. Permutations add up quick, though.
     if (searchItems === 4) {
         for (let match of collection) {
             let i = 0;
@@ -112,14 +112,14 @@ function search(object) {
             }
         }   else if (searchItems === 2) {
                 for (let match of collection) {
-                let i = 0;
-                while (i < match.albumTracks.length) {
-                    if ((object.artist === match.albumArtist && object.album === match.albumTitle) || (object.artist === match.albumArtist && object.year === match.albumYearPublished) || (object.artist === match.albumArtist && object.trackName === match.albumTracks[i].name) || (object.album === match.albumTitle && object.year === match.albumYearPublished) || (object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.trackName === match.albumTracks[i].name) ) {
-                    matchingArray.push(match);
-                    break;
-                    }
+                    let i = 0;
+                    while (i < match.albumTracks.length) {
+                        if ((object.artist === match.albumArtist && object.album === match.albumTitle) || (object.artist === match.albumArtist && object.year === match.albumYearPublished) || (object.artist === match.albumArtist && object.trackName === match.albumTracks[i].name) || (object.album === match.albumTitle && object.year === match.albumYearPublished) || (object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.trackName === match.albumTracks[i].name)) {
+                        matchingArray.push(match);
+                        break;
+                        }
                     i ++;
-                }
+                    }
                 }
             } else if (searchItems === 1) {
                 for (let match of collection) {
@@ -131,16 +131,16 @@ function search(object) {
                         }
                     i ++;
                     }
-              }
+                }
             } else {
-            return collection;
-        }
+                return collection;
+            }
     return matchingArray
 }
 
 console.log('test');
 console.log(search({artist: 'John Coltrane'})); // Should log 1 to console and return array with length 2
-console.log(search({album: 'Interventions'}));
+console.log(search({album: 'Interventions'})); // Should log 1 to console and return array length 1
 console.log(search({artist: 'Bad Bunny'})); // Should log 1 to console and return empty array
 
 console.log(Object.keys(collection)); // Should return array length 6

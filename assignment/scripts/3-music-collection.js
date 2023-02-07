@@ -31,7 +31,6 @@ console.log(addToCollection('El Mal Querer', 'Rosalia', 2018, [{name: 'MALDICION
 
 console.log(collection);
 
-console.log(collection[0].albumTracks.length);
 
 /**
  * 
@@ -58,7 +57,7 @@ showCollection(collection);
  * @param {string} artist Artist to search collection array for
  * @returns {array} Array of matches by artist name, empty array if no matches found
  */
-/* here
+
 function findByArtist(artist) {
     let matchingArray = [];
     for (let match of collection) {
@@ -77,7 +76,7 @@ console.log(findByArtist('Bad Bunny')); // Should return no matches/an empty arr
  * @param {object} object Object to search collection array for full matches. keys that can be (not must) passed in object are artist, album, year.
  * @returns {array} Array of matching album info, empty array if no matches, full collection array if no object key-value pairs provided or no object pass as an argument at all.
  */
-/* here
+
 function search(object) {
     // first need to test if object is undefined, otherwise I get an error when declaring searchItems equal to no object. Works with an empty object though. Returning before all the other code avoids the error.
     if (object === undefined) {
@@ -112,17 +111,16 @@ function search(object) {
         }
     return matchingArray
 }
+console.log('test');
+console.log(search({artist: 'John Coltrane'})); // Should log 1 to console and return array with length 2
+console.log(search({artist: 'Bad Bunny'})); // Should log 1 to console and return empty array
 
-console.log(search({artist: 'John Coltrane'})); // Should return array with length 2
-console.log(search({artist: 'Bad Bunny'})); // Should return empty array
+console.log(Object.keys(collection)); // Should return array length 6
+console.log(search({artist: 'John Coltrane', album: 'Ballads', year: 1963})); // Should log 3 to console and return array length 1
+console.log(search({artist: 'John Coltrane', year: 1963})); // Should log 2 to console and return array length 1
+console.log(search({album: 'Ballads', year: 1963})); // Should log 2 to console and return array length 1
+console.log(search({artist: 'John Coltrane'})); // Should log 1 to console and return array length 2
+console.log(search({})); // Should log 0 to console and return collection array
+console.log(search({artist: 'Bad Bunny'})); // Should log 1 to console and return empty array
+console.log(search()); // Should return collection array
 
-console.log(Object.keys(collection));
-console.log(search({artist: 'John Coltrane', album: 'Ballads', year: 1963}));
-console.log(search({artist: 'John Coltrane', year: 1963}));
-console.log(search({album: 'Ballads', year: 1963}));
-console.log(search({artist: 'John Coltrane'}));
-console.log(search({}));
-console.log(search({artist: 'Bad Bunny'}));
-console.log(search());
-
-*/ // here

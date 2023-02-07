@@ -94,6 +94,7 @@ function search(object) {
             while (i < match.albumTracks.length) {
                 if (object.artist === match.albumArtist && object.album === match.albumTitle && object.year === match.albumYearPublished && object.trackName === match.albumTracks[i].name) {
                     matchingArray.push(match);
+                    break;
                 }
             i ++;
             }
@@ -104,6 +105,7 @@ function search(object) {
                 while (i < match.albumTracks.length) {
                     if ((object.artist === match.albumArtist && object.album === match.albumTitle && object.year === match.albumYearPublished) || (object.artist === match.albumArtist && object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.artist === match.albumArtist && object.trackName === match.albumTracks[i].name)){
                         matchingArray.push(match);
+                        break;
                     }
                 i ++;
                 }
@@ -114,6 +116,7 @@ function search(object) {
                 while (i < match.albumTracks.length) {
                     if ((object.artist === match.albumArtist && object.album === match.albumTitle) || (object.artist === match.albumArtist && object.year === match.albumYearPublished) || (object.artist === match.albumArtist && object.trackName === match.albumTracks[i].name) || (object.album === match.albumTitle && object.year === match.albumYearPublished) || (object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.trackName === match.albumTracks[i].name) ) {
                     matchingArray.push(match);
+                    break;
                     }
                     i ++;
                 }
@@ -124,6 +127,7 @@ function search(object) {
                     while (i < match.albumTracks.length) {
                         if (object.artist === match.albumArtist || object.album === match.albumTitle || object.year === match.albumYearPublished || object.trackName === match.albumTracks[i].name) {
                         matchingArray.push(match);
+                        break;
                         }
                     i ++;
                     }
@@ -136,6 +140,7 @@ function search(object) {
 
 console.log('test');
 console.log(search({artist: 'John Coltrane'})); // Should log 1 to console and return array with length 2
+console.log(search({album: 'Interventions'}));
 console.log(search({artist: 'Bad Bunny'})); // Should log 1 to console and return empty array
 
 console.log(Object.keys(collection)); // Should return array length 6
@@ -146,7 +151,6 @@ console.log(search({artist: 'John Coltrane'})); // Should log 1 to console and r
 console.log(search({})); // Should log 0 to console and return collection array
 console.log(search({artist: 'Bad Bunny'})); // Should log 1 to console and return empty array
 console.log(search()); // Should return collection array
-
-
 console.log(search({artist: 'Rosalia', album: 'El Mal Querer', year: 2018, trackName: 'MALDICION'})); // Should log 4 to console and return array length 1
-console.log(search({trackName: 'Friend or Foe'}));
+console.log(search({trackName: 'Friend or Foe'})); // Should log 1 to console and return array length 1
+console.log(search({artist: 'Rosalia', trackName: 'MALDICION', year: 2018})); // Should log 3 to console and return array length 1

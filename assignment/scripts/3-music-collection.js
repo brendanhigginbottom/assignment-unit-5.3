@@ -11,7 +11,7 @@ let collection = [];
  * @returns {object} Returns object with the above key-value pairs
  */
 
-function addToCollection (title, artist, yearPublished, tracks) {
+function addToCollection(title, artist, yearPublished, tracks) {
     let newRecord = {
         albumTitle: title,
         albumArtist: artist,
@@ -22,12 +22,12 @@ function addToCollection (title, artist, yearPublished, tracks) {
     return newRecord;
 }
 
-console.log(addToCollection('Ballads', 'John Coltrane', 1963, [{name: "What's New", duration: '3:44'}, {name: 'All Or Nothing At All', duration: '3:34'}]));
-console.log(addToCollection('My Favorite Things', 'John Coltrane', 1961, [{name: 'But Not for Me', duration: '9:35'}, {name: 'My Favorite Things', duration: '13:45'}]));
-console.log(addToCollection("Cher's Golden Greats", 'Cher', 1968, [{name: 'All I really Want to Do', duration: '2:58'}, {name: 'Sunny', duration: '3:09'}]));
-console.log(addToCollection('Interventions', 'Horse Lords', 2016, [{name: 'Encounters I / Transfinite Flow', duration: '3:26'}, {name: 'Time Slip', duration: '2:33'}]));
-console.log(addToCollection('The Bad Plus Joshua Redman', 'The Bad Plus and Joshua Redman', 2016, [{name: 'As This Moment Slips Away', duration: '6:55'}, {name: 'Friend or Foe', duration: '8:39'}]));
-console.log(addToCollection('El Mal Querer', 'Rosalia', 2018, [{name: 'MALDICION', duration: '2:55'}, {name: 'MALAMENTE', duration: '2:30'}]));
+console.log(addToCollection('Ballads', 'John Coltrane', 1963, [{ name: "What's New", duration: '3:44' }, { name: 'All Or Nothing At All', duration: '3:34' }]));
+console.log(addToCollection('My Favorite Things', 'John Coltrane', 1961, [{ name: 'But Not for Me', duration: '9:35' }, { name: 'My Favorite Things', duration: '13:45' }]));
+console.log(addToCollection("Cher's Golden Greats", 'Cher', 1968, [{ name: 'All I really Want to Do', duration: '2:58' }, { name: 'Sunny', duration: '3:09' }]));
+console.log(addToCollection('Interventions', 'Horse Lords', 2016, [{ name: 'Encounters I / Transfinite Flow', duration: '3:26' }, { name: 'Time Slip', duration: '2:33' }]));
+console.log(addToCollection('The Bad Plus Joshua Redman', 'The Bad Plus and Joshua Redman', 2016, [{ name: 'As This Moment Slips Away', duration: '6:55' }, { name: 'Friend or Foe', duration: '8:39' }]));
+console.log(addToCollection('El Mal Querer', 'Rosalia', 2018, [{ name: 'MALDICION', duration: '2:55' }, { name: 'MALAMENTE', duration: '2:30' }]));
 
 console.log(collection);
 
@@ -37,7 +37,7 @@ console.log(collection);
  * @param {array} collectionArray Array to log contents of
  */
 
-function showCollection (collectionArray) {
+function showCollection(collectionArray) {
     console.log(collectionArray.length);
     let initialTrackNumber = 1;
     for (let i = 0; i < collectionArray.length; i += 1) {
@@ -46,7 +46,7 @@ function showCollection (collectionArray) {
             console.log(`${initialTrackNumber}. ${collectionArray[i].albumTracks[j].name}: ${collectionArray[i].albumTracks[j].duration}`);
             initialTrackNumber += 1;
         }
-    initialTrackNumber = 1;
+        initialTrackNumber = 1;
     }
 }
 showCollection(collection);
@@ -63,7 +63,7 @@ function findByArtist(artist) {
     for (let match of collection) {
         if (match.albumArtist === artist) {
             matchingArray.push(match)
-        } 
+        }
     }
     return matchingArray;
 }
@@ -96,61 +96,61 @@ function search(object) {
                     matchingArray.push(match);
                     break;
                 }
-            i ++;
+                i++; //tab in
             }
         }
-    }   else if (searchItems === 3) {
-            for (let match of collection) {
-                let i = 0;
-                while (i < match.albumTracks.length) {
-                    if ((object.artist === match.albumArtist && object.album === match.albumTitle && object.year === match.albumYearPublished) || (object.artist === match.albumArtist && object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.artist === match.albumArtist && object.trackName === match.albumTracks[i].name)){
-                        matchingArray.push(match);
-                        break;
-                    }
-                i ++;
+    } else if (searchItems === 3) {
+        for (let match of collection) {
+            let i = 0;
+            while (i < match.albumTracks.length) {
+                if ((object.artist === match.albumArtist && object.album === match.albumTitle && object.year === match.albumYearPublished) || (object.artist === match.albumArtist && object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.artist === match.albumArtist && object.trackName === match.albumTracks[i].name)) {
+                    matchingArray.push(match);
+                    break;
                 }
+                i++;
             }
-        }   else if (searchItems === 2) {
-                for (let match of collection) {
-                    let i = 0;
-                    while (i < match.albumTracks.length) {
-                        if ((object.artist === match.albumArtist && object.album === match.albumTitle) || (object.artist === match.albumArtist && object.year === match.albumYearPublished) || (object.artist === match.albumArtist && object.trackName === match.albumTracks[i].name) || (object.album === match.albumTitle && object.year === match.albumYearPublished) || (object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.trackName === match.albumTracks[i].name)) {
-                        matchingArray.push(match);
-                        break;
-                        }
-                    i ++;
-                    }
+        }
+    } else if (searchItems === 2) {
+        for (let match of collection) {
+            let i = 0;
+            while (i < match.albumTracks.length) {
+                if ((object.artist === match.albumArtist && object.album === match.albumTitle) || (object.artist === match.albumArtist && object.year === match.albumYearPublished) || (object.artist === match.albumArtist && object.trackName === match.albumTracks[i].name) || (object.album === match.albumTitle && object.year === match.albumYearPublished) || (object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.trackName === match.albumTracks[i].name)) {
+                    matchingArray.push(match);
+                    break;
                 }
-            } else if (searchItems === 1) {
-                for (let match of collection) {
-                    let i = 0;
-                    while (i < match.albumTracks.length) {
-                        if (object.artist === match.albumArtist || object.album === match.albumTitle || object.year === match.albumYearPublished || object.trackName === match.albumTracks[i].name) {
-                        matchingArray.push(match);
-                        break;
-                        }
-                    i ++;
-                    }
-                }
-            } else {
-                return collection;
+                i++;
             }
+        }
+    } else if (searchItems === 1) {
+        for (let match of collection) {
+            let i = 0;
+            while (i < match.albumTracks.length) {
+                if (object.artist === match.albumArtist || object.album === match.albumTitle || object.year === match.albumYearPublished || object.trackName === match.albumTracks[i].name) {
+                    matchingArray.push(match);
+                    break;
+                }
+                i++;
+            }
+        }
+    } else {
+        return collection;
+    }
     return matchingArray
 }
 
 console.log('test');
-console.log(search({artist: 'John Coltrane'})); // Should log 1 to console and return array with length 2
-console.log(search({album: 'Interventions'})); // Should log 1 to console and return array length 1
-console.log(search({artist: 'Bad Bunny'})); // Should log 1 to console and return empty array
+console.log(search({ artist: 'John Coltrane' })); // Should log 1 to console and return array with length 2
+console.log(search({ album: 'Interventions' })); // Should log 1 to console and return array length 1
+console.log(search({ artist: 'Bad Bunny' })); // Should log 1 to console and return empty array
 
 console.log(Object.keys(collection)); // Should return array length 6
-console.log(search({artist: 'John Coltrane', album: 'Ballads', year: 1963})); // Should log 3 to console and return array length 1
-console.log(search({artist: 'John Coltrane', year: 1963})); // Should log 2 to console and return array length 1
-console.log(search({album: 'Ballads', year: 1963})); // Should log 2 to console and return array length 1
-console.log(search({artist: 'John Coltrane'})); // Should log 1 to console and return array length 2
+console.log(search({ artist: 'John Coltrane', album: 'Ballads', year: 1963 })); // Should log 3 to console and return array length 1
+console.log(search({ artist: 'John Coltrane', year: 1963 })); // Should log 2 to console and return array length 1
+console.log(search({ album: 'Ballads', year: 1963 })); // Should log 2 to console and return array length 1
+console.log(search({ artist: 'John Coltrane' })); // Should log 1 to console and return array length 2
 console.log(search({})); // Should log 0 to console and return collection array
-console.log(search({artist: 'Bad Bunny'})); // Should log 1 to console and return empty array
+console.log(search({ artist: 'Bad Bunny' })); // Should log 1 to console and return empty array
 console.log(search()); // Should return collection array
-console.log(search({artist: 'Rosalia', album: 'El Mal Querer', year: 2018, trackName: 'MALDICION'})); // Should log 4 to console and return array length 1
-console.log(search({trackName: 'Friend or Foe'})); // Should log 1 to console and return array length 1
-console.log(search({artist: 'Rosalia', trackName: 'MALDICION', year: 2018})); // Should log 3 to console and return array length 1
+console.log(search({ artist: 'Rosalia', album: 'El Mal Querer', year: 2018, trackName: 'MALDICION' })); // Should log 4 to console and return array length 1
+console.log(search({ trackName: 'Friend or Foe' })); // Should log 1 to console and return array length 1
+console.log(search({ artist: 'Rosalia', trackName: 'MALDICION', year: 2018 })); // Should log 3 to console and return array length 1

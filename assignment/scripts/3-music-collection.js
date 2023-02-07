@@ -87,7 +87,7 @@ function search(object) {
     // Determines number of search criteria. If searchItems === 0, no key-value pairs provided in object. Logging it for my own tests.
     let searchItems = Object.keys(object).length;
     console.log(searchItems);
-    // There is surely a better way to do this, but this checks the length of the object passed, knowing that all are provided if it's === 3, and iterates from there.
+    // There is surely a better way to do this, but this checks the length of the object passed, knowing that all are provided if it's === 4, and iterates from there. Permutations add up quick, though.
     if (searchItems === 4) {
         for (let match of collection) {
             let i = 0;
@@ -97,25 +97,43 @@ function search(object) {
                 }
             i ++;
             }
-          }
-        } else if (searchItems === 2) {
+        }
+    }   else if (searchItems === 3) {
             for (let match of collection) {
-                if ((object.artist === match.albumArtist && object.album === match.albumTitle) || (object.artist === match.albumArtist && object.year === match.albumYearPublished) || (object.album === match.albumTitle && object.year === match.albumYearPublished)) {
-                    matchingArray.push(match);
+                let i = 0;
+                while (i < match.albumTracks.length) {
+                    if ((object.artist === match.albumArtist && object.album === match.albumTitle && object.year === match.albumYearPublished) || (object.artist === match.albumArtist && object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.artist === match.albumArtist && object.trackName === match.albumTracks[i].name)){
+                        matchingArray.push(match);
+                    }
+                i ++;
                 }
-              }
-        } else if (searchItems === 1) {
-            for (let match of collection) {
-                if (object.artist === match.albumArtist || object.album === match.albumTitle || object.year === match.albumYearPublished) {
+            }
+        }   else if (searchItems === 2) {
+                for (let match of collection) {
+                let i = 0;
+                while (i < match.albumTracks.length) {
+                    if ((object.artist === match.albumArtist && object.album === match.albumTitle) || (object.artist === match.albumArtist && object.year === match.albumYearPublished) || (object.artist === match.albumArtist && object.trackName === match.albumTracks[i].name) || (object.album === match.albumTitle && object.year === match.albumYearPublished) || (object.album === match.albumTitle && object.trackName === match.albumTracks[i].name) || (object.year === match.albumYearPublished && object.trackName === match.albumTracks[i].name) ) {
                     matchingArray.push(match);
+                    }
+                    i ++;
                 }
+                }
+            } else if (searchItems === 1) {
+                for (let match of collection) {
+                    let i = 0;
+                    while (i < match.albumTracks.length) {
+                        if (object.artist === match.albumArtist || object.album === match.albumTitle || object.year === match.albumYearPublished || object.trackName === match.albumTracks[i].name) {
+                        matchingArray.push(match);
+                        }
+                    i ++;
+                    }
               }
-        } else {
+            } else {
             return collection;
         }
     return matchingArray
 }
-/*
+
 console.log('test');
 console.log(search({artist: 'John Coltrane'})); // Should log 1 to console and return array with length 2
 console.log(search({artist: 'Bad Bunny'})); // Should log 1 to console and return empty array
@@ -128,6 +146,7 @@ console.log(search({artist: 'John Coltrane'})); // Should log 1 to console and r
 console.log(search({})); // Should log 0 to console and return collection array
 console.log(search({artist: 'Bad Bunny'})); // Should log 1 to console and return empty array
 console.log(search()); // Should return collection array
-*/
+
 
 console.log(search({artist: 'Rosalia', album: 'El Mal Querer', year: 2018, trackName: 'MALDICION'})); // Should log 4 to console and return array length 1
+console.log(search({trackName: 'Friend or Foe'}));
